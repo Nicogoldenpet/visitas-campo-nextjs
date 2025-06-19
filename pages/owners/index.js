@@ -1,31 +1,31 @@
-import "@/lib/visits"
-import VisitCard from "@/components/VisitCard";
-import { getAllVisits } from "@/lib/visits";
+import "@/lib/owners"
+import OwnerCard from "@/components/OwnerCard";
+import { getAllOwners } from "@/lib/owners";
 import Head from "next/head";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSquarePlus, faHome } from "@fortawesome/free-solid-svg-icons";
 
 export async function getStaticProps() {
-  const visits = await getAllVisits();
+  const owners = await getAllOwners();
   return {
     props: {
-      visits,
+      owners,
     },
     revalidate: 10, // Revalidar cada 10 segundos ISR
   };
 }
 
-export default function Visitas({ visits }) {
+export default function Duenos({ owners }) {
   return (
     <>
       <Head>
-        <title>Visits</title>
+        <title>Owners</title>
       </Head>
       <main className="p-6">
-        <h1 className="text-xl font-bold mb-4">Listado de Visitas</h1>
+        <h1 className="text-xl font-bold mb-4">Dueños de las fincas</h1>
         <ul className="space-y-4">
-          {visits.map((finca) => (
-            <VisitCard key={finca.id} visit={finca} />
+          {owners.map((dueno) => (
+            <OwnerCard key={dueno.id} owner={dueno} />
           ))}
         </ul>
       </main>
